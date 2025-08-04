@@ -1,0 +1,14 @@
+apiVersion: operator.openshift.io/v1
+kind: IngressController
+metadata:
+  name: appdomain
+  namespace: openshift-ingress-operator
+spec:
+  domain: applications.cluster-tblw7.tblw7.sandbox9.opentlc.com
+  defaultCertificate: 
+  name: 
+    applications-router-custom
+  nodePlacement:
+    nodeSelector:
+      matchLabels:
+        node-role.kubernetes.io/worker: ""

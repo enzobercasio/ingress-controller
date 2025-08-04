@@ -1,0 +1,14 @@
+apiVersion: operator.openshift.io/v1
+kind: IngressController
+metadata:
+  name: sharded
+  namespace: openshift-ingress-operator
+spec:
+  domain: shard.cluster-bbnvh.bbnvh.sandbox2226.opentlc.com
+  nodePlacement:
+    nodeSelector:
+      matchLabels:
+        node-role.kubernetes.io/worker: ""
+  routeSelector:
+    matchLabels:
+      type: sharded
