@@ -69,7 +69,7 @@
     oc new-project app-on-shard
     oc new-app httpd~https://github.com/sclorg/httpd-ex.git --name my-httpd-app
 
-### edge tls route
+### Edge tls route
     cat <<'EOF' | oc apply -f -
     apiVersion: route.openshift.io/v1
     kind: Route
@@ -87,7 +87,7 @@
         termination: edge
     EOF
 
-### no tls route
+### No tls route
     cat <<'EOF' | oc apply -f -
     apiVersion: route.openshift.io/v1
     kind: Route
@@ -103,15 +103,15 @@
         name: my-httpd-app
     EOF
 
-### resolve locally
+### Resolve locally
     curl --resolve my-httpd-app.shard.cluster-bbnvh.bbnvh.sandbox2226.opentlc.com:80:18.136.26.246 \
       http://my-httpd-app.shard.cluster-bbnvh.bbnvh.sandbox2226.opentlc.com/
 
-### find the shards LB hostname
+### Find the shards LB hostname
     oc -n openshift-ingress get svc router-sharded -o jsonpath='{.status.loadBalancer.ingress[0].hostname}{"\n"}{.status.loadBalancer.ingress[0].ip}{"\n"}'
 
-### get ip for the elb hostname
+### Get ip for the elb hostname
     dig +short afa6dac7608c644768e485c854a4e3b9-1074462894.ap-southeast-1.elb.amazonaws.com | head -n1
 
-### or add to /etc/hosts
+### Or add to /etc/hosts
 
